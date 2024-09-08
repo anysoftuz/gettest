@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "433161509720",
+    "project_id": "gettest-c74a7",
+    "storage_bucket": "gettest-c74a7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433161509720:android:1f90904d86e657cdeca32d",
+        "android_client_info": {
+          "package_name": "com.gettest.gettest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAR0_gspGv5QoIidD-0vM-XMNMZ4Xo_2w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
