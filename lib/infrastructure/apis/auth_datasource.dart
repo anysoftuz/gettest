@@ -20,14 +20,15 @@ abstract class AuthDatasourche {
 }
 
 class AuthDataSourcheImpl implements AuthDatasourche {
-  final dio = serviceLocator<DioSettings>().dioForAuth;
+  final dioAuth = serviceLocator<DioSettings>().dioForAuth;
+  final dio = serviceLocator<DioSettings>().dio;
   final ErrorHandle _handle = ErrorHandle();
 
   @override
   Future<ExistModel> exist(ExistBody body) {
     return _handle.apiCantrol(
       request: () {
-        return dio.post(
+        return dioAuth.post(
           '/v1/auth/exist',
           data: body.toJson(),
         );
@@ -40,7 +41,7 @@ class AuthDataSourcheImpl implements AuthDatasourche {
   Future<UserModel> getMe() {
     return _handle.apiCantrol(
       request: () {
-        return dio.get(
+        return dioAuth.get(
           '/v1/auth/me',
           options: Options(
             headers: StorageRepository.getString(StorageKeys.TOKEN).isNotEmpty
@@ -60,7 +61,7 @@ class AuthDataSourcheImpl implements AuthDatasourche {
   Future<SendCodeModel> sendCode(SendCodeBody body) {
     return _handle.apiCantrol(
       request: () {
-        return dio.post(
+        return dioAuth.post(
           '/v1/otp/send-code',
           data: body.toJson(),
         );
@@ -74,7 +75,7 @@ class AuthDataSourcheImpl implements AuthDatasourche {
   Future<bool> logout() {
     return _handle.apiCantrol(
       request: () {
-        return dio.post('/v1/auth/logout');
+        return dioAuth.post('/v1/auth/logout');
       },
       body: (response) => true,
     );

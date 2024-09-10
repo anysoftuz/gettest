@@ -30,18 +30,17 @@ class _AuthViewState extends State<AuthView> {
             return WButton(
               isDisabled: controller.text.length != 19,
               isLoading: state.statusCode.isInProgress,
-              margin: const EdgeInsets.symmetric(horizontal: 16),
+              margin: const EdgeInsets.symmetric(horizontal: 16)
+                  .copyWith(bottom: 16),
               onTap: () {
                 context.read<AuthBloc>().add(SendCodeEvent(
                       phone: MyFunction.formatPhoneNumber(controller.text),
                       onError: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text(
-                              "Birozdan so'ng qayta urinib ko'ring",
-                            )
-                          )
-                        );
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                                content: Text(
+                          "Birozdan so'ng qayta urinib ko'ring",
+                        )));
                       },
                       onSucces: (model) {
                         Navigator.of(context).push(MaterialPageRoute(
