@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gettest/app.dart';
+import 'package:gettest/infrastructure/core/service_locator.dart';
 import 'package:gettest/presentation/widgets/w_scale_animation.dart';
 import 'package:gettest/src/assets/colors/colors.dart';
 import 'package:gettest/src/assets/icons.dart';
+import 'package:gettest/src/settings/settings_controller.dart';
 
 class ThemeView extends StatefulWidget {
   const ThemeView({super.key});
@@ -16,7 +17,7 @@ class _ThemeViewState extends State<ThemeView> {
   @override
   void initState() {
     super.initState();
-    switch (MyApp.of(context).widget.settingsController.themeMode) {
+    switch (serviceLocator<SettingsController>().themeMode) {
       case ThemeMode.dark:
         selectIndex = ValueNotifier(0);
         return;
@@ -49,9 +50,7 @@ class _ThemeViewState extends State<ThemeView> {
                   ),
                   title: 'Qorong’u',
                   onTap: () {
-                    MyApp.of(context)
-                        .widget
-                        .settingsController
+                    serviceLocator<SettingsController>()
                         .updateThemeMode(ThemeMode.dark);
                   },
                 ),
@@ -65,9 +64,7 @@ class _ThemeViewState extends State<ThemeView> {
                   ),
                   title: 'Yorug’',
                   onTap: () {
-                    MyApp.of(context)
-                        .widget
-                        .settingsController
+                    serviceLocator<SettingsController>()
                         .updateThemeMode(ThemeMode.light);
                   },
                 ),
@@ -82,9 +79,7 @@ class _ThemeViewState extends State<ThemeView> {
                   ),
                   title: 'Qurilma mavzusi',
                   onTap: () {
-                    MyApp.of(context)
-                        .widget
-                        .settingsController
+                    serviceLocator<SettingsController>()
                         .updateThemeMode(ThemeMode.system);
                   },
                 ),

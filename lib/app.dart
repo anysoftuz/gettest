@@ -20,8 +20,6 @@ class MyApp extends StatefulWidget {
   });
 
   final SettingsController settingsController;
-  static _MyAppState of(BuildContext context) =>
-      context.findAncestorStateOfType<_MyAppState>()!;
 
   @override
   State<MyApp> createState() => _MyAppState();

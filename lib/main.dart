@@ -13,7 +13,6 @@ import 'package:gettest/utils/device_info.dart';
 
 import 'app.dart';
 import 'src/settings/settings_controller.dart';
-import 'src/settings/settings_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,7 +24,7 @@ void main() async {
     await getDeviceModel(),
   );
   setupLocator();
-  final settingsController = SettingsController(SettingsService());
+  final settingsController = serviceLocator<SettingsController>();
 
   await settingsController.loadSettings();
 

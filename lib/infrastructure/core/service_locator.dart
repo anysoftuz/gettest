@@ -5,6 +5,8 @@ import 'package:gettest/infrastructure/apis/home_datasource.dart';
 import 'package:gettest/infrastructure/core/dio_settings.dart';
 import 'package:gettest/infrastructure/repo/auth_repo.dart';
 import 'package:gettest/infrastructure/repo/home_repo.dart';
+import 'package:gettest/src/settings/settings_controller.dart';
+import 'package:gettest/src/settings/settings_service.dart';
 
 final serviceLocator = GetIt.I;
 
@@ -17,6 +19,7 @@ void setupLocator() {
     ..registerLazySingleton(
       () => HomeRepoImpl(dataSourcheImpl: HomeDatasourceImpl()),
     )
+    ..registerSingleton(SettingsController(SettingsService()))
     ..registerSingleton(AuthBloc(serviceLocator<AuthRepo>()));
 }
 
