@@ -56,17 +56,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<GetMeEvent>((event, emit) async {
       final response = await _repository.getMe();
       if (response.isRight) {
-        if (response.right.data.user.organizations.isNotEmpty) {
-          await StorageRepository.putInt(
-            StorageKeys.ORGID,
-            response.right.data.user.organizations.first.id,
-          );
-          serviceLocator<DioSettings>().setBaseOptions(lang: 'uz');
+        if (response.right.success) {
+          if (response.right.data.user.organizations.isNotEmpty) {
+            await StorageRepository.putInt(
+              StorageKeys.ORGID,
+              response.right.data.user.organizations.first.id,
+            );
+            serviceLocator<DioSettings>().setBaseOptions(lang: 'uz');
+          }
+          emit(state.copyWith(
+            status: AuthenticationStatus.authenticated,
+            userModel: response.right,
+          ));
+        } else {
+          emit(state.copyWith(status: AuthenticationStatus.unauthenticated));
         }
-        emit(state.copyWith(
-          status: AuthenticationStatus.authenticated,
-          userModel: response.right,
-        ));
       } else {
         emit(state.copyWith(status: AuthenticationStatus.unauthenticated));
       }
@@ -78,8 +82,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final response = await _repository.sendCode(body);
       Log.e(response);
       if (response.isRight) {
-        emit(state.copyWith(statusCode: FormzSubmissionStatus.success));
-        event.onSucces(response.right);
+        if (response.right.success) {
+          emit(state.copyWith(statusCode: FormzSubmissionStatus.success));
+          event.onSucces(response.right);
+        } else {
+          emit(state.copyWith(statusCode: FormzSubmissionStatus.failure));
+          event.onError();
+        }
       } else {
         emit(state.copyWith(statusCode: FormzSubmissionStatus.failure));
         event.onError();
@@ -117,7 +126,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         image: event.base64,
         comparisonValue: event.comparisonValue,
         externalId: event.externalId,
-        authCode: event.authCode,
+        code: event.authCode,
       );
       final response = await _repository.verifyPost(model);
       Log.e(response);
