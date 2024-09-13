@@ -10,6 +10,7 @@ import 'package:gettest/infrastructure/core/dio_settings.dart';
 import 'package:gettest/infrastructure/core/service_locator.dart';
 import 'package:gettest/infrastructure/repo/storage_repository.dart';
 import 'package:gettest/src/assets/constants/storage_keys.dart';
+import 'package:gettest/utils/device_info.dart';
 
 abstract class AuthDatasourche {
   Future<UserModel> getMe();
@@ -87,6 +88,22 @@ class AuthDataSourcheImpl implements AuthDatasourche {
       request: () {
         return dio.post(
           '/v1/settings/verify',
+          options: Options(
+            headers: <String, dynamic>{
+              'x-app-type': "user",
+              'x-device-type': getDeviceType(),
+              'x-device-model':
+                  StorageRepository.getString(StorageKeys.deviceModel),
+              'x-app-version': '0.0.1',
+              'x-app-build': '1',
+              'x-device-uid': "71C7B833-C6EA-4326-A8FF-CB8551867656",
+              'x-app-lang': 'uz',
+              'x-app-organization': StorageRepository.getInt(StorageKeys.ORGID),
+              'Accept': 'application/json',
+              'Authorization':
+                  'Bearer ${StorageRepository.getString(StorageKeys.TOKEN)}',
+            },
+          ),
           data: body.toJson(),
         );
       },
