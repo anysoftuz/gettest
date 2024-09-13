@@ -77,6 +77,9 @@ mixin ProfileMixin on State<ProfileView> {
               context.read<AuthBloc>().add(GetMeEvent());
             },
           ));
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text("MyId Sizni topmadi")));
     }
   }
 }
