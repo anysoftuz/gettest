@@ -3,6 +3,7 @@ import 'package:gettest/infrastructure/core/service_locator.dart';
 import 'package:gettest/presentation/widgets/w_scale_animation.dart';
 import 'package:gettest/src/assets/colors/colors.dart';
 import 'package:gettest/src/assets/icons.dart';
+import 'package:gettest/src/assets/themes/context_extension.dart';
 import 'package:gettest/src/settings/settings_controller.dart';
 
 class ThemeView extends StatefulWidget {
@@ -46,7 +47,7 @@ class _ThemeViewState extends State<ThemeView> {
                   value: value,
                   index: 0,
                   trailing: AppIcons.moon.svg(
-                    color: value == 0 ? green : dark,
+                    color: value == 0 ? green : context.color.white,
                   ),
                   title: 'Qorong’u',
                   onTap: () {
@@ -60,7 +61,7 @@ class _ThemeViewState extends State<ThemeView> {
                   value: value,
                   index: 1,
                   trailing: AppIcons.sun.svg(
-                    color: value == 1 ? green : dark,
+                    color: value == 1 ? green : context.color.white,
                   ),
                   title: 'Yorug’',
                   onTap: () {
@@ -75,7 +76,7 @@ class _ThemeViewState extends State<ThemeView> {
                   index: 2,
                   trailing: Icon(
                     Icons.phone_iphone,
-                    color: value == 2 ? green : dark,
+                    color: value == 2 ? green : context.color.white,
                   ),
                   title: 'Qurilma mavzusi',
                   onTap: () {
@@ -121,7 +122,8 @@ class ThemeIteam extends StatelessWidget {
         duration: const Duration(milliseconds: 300),
         decoration: BoxDecoration(
           border: value == index ? Border.all(color: green) : null,
-          color: value == index ? white : whiteSmoke,
+          color:
+              value == index ? context.color.black : context.color.whiteSmoke,
           borderRadius: BorderRadius.circular(20),
         ),
         padding: const EdgeInsets.all(20),
@@ -137,7 +139,7 @@ class ThemeIteam extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w400,
-                  color: value == index ? green : dark,
+                  color: value == index ? green : context.color.white,
                 ),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,

@@ -131,8 +131,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final response = await _repository.verifyPost(model);
       Log.e(response);
       if (response.isRight) {
-        emit(state.copyWith(statusMyId: FormzSubmissionStatus.success));
-        event.onSucces();
+        if (response.right) {
+          emit(state.copyWith(statusMyId: FormzSubmissionStatus.success));
+          event.onSucces();
+        } else {
+          emit(state.copyWith(statusMyId: FormzSubmissionStatus.failure));
+          event.onError();
+        }
       } else {
         emit(state.copyWith(statusMyId: FormzSubmissionStatus.failure));
         event.onError();

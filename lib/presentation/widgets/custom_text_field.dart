@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gettest/src/assets/colors/colors.dart';
+import 'package:gettest/src/assets/themes/context_extension.dart';
 
 class CustomTextField extends StatefulWidget {
   final String title;
@@ -150,9 +151,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
                         icon: widget.prefixIcon!,
                         onPressed: widget.onprefixIconPressed ?? () {})
                     : null,
-                focusColor: white,
-                fillColor: widget.fillColor ?? whiteSmoke,
-                hoverColor: white,
+                focusColor: context.color.whiteSmoke,
+                fillColor: widget.fillColor ?? context.color.whiteSmoke,
+                hoverColor: context.color.whiteSmoke,
                 filled: true,
                 border: widget.border ??
                     OutlineInputBorder(

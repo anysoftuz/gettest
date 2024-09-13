@@ -6,6 +6,8 @@ import 'package:gettest/presentation/routes/route_name.dart';
 import 'package:gettest/presentation/widgets/w_button.dart';
 import 'package:gettest/src/assets/colors/colors.dart';
 import 'package:gettest/src/assets/icons.dart';
+import 'package:gettest/src/assets/themes/context_extension.dart';
+import 'package:gettest/utils/base_64_image.dart';
 import 'package:gettest/utils/log_service.dart';
 import 'package:gettest/utils/my_function.dart';
 import 'package:go_router/go_router.dart';
@@ -34,8 +36,8 @@ class _ProfileViewState extends State<ProfileView> with ProfileMixin {
             onPressed: () {
               context.push(AppRouteName.notification);
             },
-            icon: AppIcons.notification.svg(),
-          )
+            icon: AppIcons.notification.svg(color: context.color.white),
+          ),
         ],
       ),
       bottomNavigationBar: TextButton(
@@ -111,7 +113,7 @@ class _ProfileViewState extends State<ProfileView> with ProfileMixin {
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: borderColor),
+                    border: Border.all(color: context.color.borderColor),
                   ),
                   child: Row(
                     children: [
@@ -121,7 +123,17 @@ class _ProfileViewState extends State<ProfileView> with ProfileMixin {
                             ? MyFunction.imageFromBase64String(
                                 state.userModel.data.user.avatar,
                               )
-                            : null,
+                            : _result != null
+                                ? ClipRRect(
+                                    borderRadius: BorderRadius.circular(48),
+                                    child: SizedBox(
+                                      height: 48,
+                                      width: 48,
+                                      child: imageFromBase64String(
+                                          _result!.base64 ?? ""),
+                                    ),
+                                  )
+                                : null,
                       ),
                       const SizedBox(width: 16),
                       Expanded(
@@ -139,7 +151,7 @@ class _ProfileViewState extends State<ProfileView> with ProfileMixin {
                             Row(
                               children: [
                                 state.userModel.data.user.isIdentified
-                                    ? AppIcons.checkVerified.svg()
+                                    ? AppIcons.checkVerified.svg(color: green)
                                     : AppIcons.warning.svg(),
                                 const SizedBox(width: 8),
                                 Text(
@@ -207,13 +219,14 @@ class _ProfileViewState extends State<ProfileView> with ProfileMixin {
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: borderColor),
+                border: Border.all(color: context.color.borderColor),
               ),
               child: Column(
                 children: [
                   ListTile(
-                    leading: AppIcons.edit.svg(),
-                    trailing: AppIcons.arrowRight.svg(),
+                    leading: AppIcons.edit.svg(color: context.color.white),
+                    trailing:
+                        AppIcons.arrowRight.svg(color: context.color.white),
                     title: const Text("Edit profile"),
                     onTap: () {
                       context.push(AppRouteName.profileInfo);
@@ -221,8 +234,9 @@ class _ProfileViewState extends State<ProfileView> with ProfileMixin {
                   ),
                   const Divider(height: 1),
                   ListTile(
-                    leading: AppIcons.scan.svg(),
-                    trailing: AppIcons.arrowRight.svg(),
+                    leading: AppIcons.scan.svg(color: context.color.white),
+                    trailing:
+                        AppIcons.arrowRight.svg(color: context.color.white),
                     title: const Text("Scan to login"),
                     onTap: () {
                       context.push(AppRouteName.scan);
@@ -230,8 +244,9 @@ class _ProfileViewState extends State<ProfileView> with ProfileMixin {
                   ),
                   const Divider(height: 1),
                   ListTile(
-                    leading: AppIcons.lenguage.svg(),
-                    trailing: AppIcons.arrowRight.svg(),
+                    leading: AppIcons.lenguage.svg(color: context.color.white),
+                    trailing:
+                        AppIcons.arrowRight.svg(color: context.color.white),
                     title: const Text("Language"),
                     onTap: () {
                       context.push(AppRouteName.lenguage);
@@ -239,8 +254,9 @@ class _ProfileViewState extends State<ProfileView> with ProfileMixin {
                   ),
                   const Divider(height: 1),
                   ListTile(
-                    leading: AppIcons.theme.svg(),
-                    trailing: AppIcons.arrowRight.svg(),
+                    leading: AppIcons.theme.svg(color: context.color.white),
+                    trailing:
+                        AppIcons.arrowRight.svg(color: context.color.white),
                     title: const Text("Theme"),
                     onTap: () {
                       context.push(AppRouteName.theme);

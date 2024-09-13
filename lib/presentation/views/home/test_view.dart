@@ -6,6 +6,7 @@ import 'package:gettest/presentation/routes/route_name.dart';
 import 'package:gettest/presentation/views/home/test_info_view.dart';
 import 'package:gettest/src/assets/colors/colors.dart';
 import 'package:gettest/src/assets/icons.dart';
+import 'package:gettest/src/assets/themes/context_extension.dart';
 import 'package:go_router/go_router.dart';
 
 class TestView extends StatefulWidget {
@@ -32,7 +33,7 @@ class _TestViewState extends State<TestView> {
             onPressed: () {
               context.push(AppRouteName.notification);
             },
-            icon: AppIcons.notification.svg(),
+            icon: AppIcons.notification.svg(color: context.color.white),
           )
         ],
       ),

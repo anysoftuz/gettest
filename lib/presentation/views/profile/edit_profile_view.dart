@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gettest/src/assets/colors/colors.dart';
+import 'package:gettest/src/assets/themes/context_extension.dart';
 import 'package:image_picker/image_picker.dart';
 
 class EditProfileView extends StatefulWidget {
@@ -67,7 +68,7 @@ class _EditProfileViewState extends State<EditProfileView> {
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: borderColor),
+                border: Border.all(color: context.color.borderColor),
               ),
               child: const Column(
                 children: [

@@ -7,33 +7,26 @@ import 'package:gettest/infrastructure/core/service_locator.dart';
 import 'package:gettest/infrastructure/repo/auth_repo.dart';
 import 'package:gettest/presentation/routes/app_routes.dart';
 import 'package:gettest/presentation/routes/route_name.dart';
-import 'package:gettest/src/assets/colors/colors.dart';
-
-import 'src/settings/settings_controller.dart';
+import 'package:gettest/src/assets/themes/theme.dart';
+import 'package:gettest/src/settings/settings_controller.dart';
 
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 
 class MyApp extends StatefulWidget {
-  const MyApp({
-    super.key,
-    required this.settingsController,
-  });
-
-  final SettingsController settingsController;
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
           AuthBloc(serviceLocator<AuthRepo>())..add(CheckUserEvent()),
       child: ListenableBuilder(
-        listenable: widget.settingsController,
+        listenable: serviceLocator<SettingsController>(),
         builder: (BuildContext context, Widget? child) {
           return MaterialApp.router(
             restorationScopeId: 'app',
@@ -48,20 +41,9 @@ class _MyAppState extends State<MyApp> {
             ],
             onGenerateTitle: (BuildContext context) =>
                 AppLocalizations.of(context)!.appTitle,
-            theme: ThemeData(
-              colorSchemeSeed: green,
-              scaffoldBackgroundColor: white,
-              appBarTheme: const AppBarTheme(
-                backgroundColor: white,
-                shadowColor: white,
-                surfaceTintColor: white,
-                centerTitle: true,
-                elevation: 1,
-              ),
-              dividerTheme: const DividerThemeData(color: Color(0xFFEAEEF2)),
-            ),
-            darkTheme: ThemeData.dark(),
-            themeMode: widget.settingsController.themeMode,
+            theme: AppTheme.lightTheme(),
+            darkTheme: AppTheme.darkTheme(),
+            themeMode: serviceLocator<SettingsController>().themeMode,
             debugShowCheckedModeBanner: false,
             routerConfig: AppRouts.router,
             builder: (context, child) => BlocListener<AuthBloc, AuthState>(

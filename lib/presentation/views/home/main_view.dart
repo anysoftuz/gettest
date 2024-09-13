@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gettest/src/assets/colors/colors.dart';
 import 'package:gettest/src/assets/icons.dart';
+import 'package:gettest/src/assets/themes/context_extension.dart';
 import 'package:go_router/go_router.dart';
 
 class MainView extends StatefulWidget {
@@ -26,18 +27,19 @@ class _MainViewState extends State<MainView> {
       bottomNavigationBar: BottomNavigationBar(
         elevation: 1,
         selectedItemColor: green,
-        unselectedItemColor: darkIcon,
+        unselectedItemColor: context.color.white.withOpacity(.5),
         currentIndex: widget.navigationShell.currentIndex,
         onTap: (index) => _onTap(context, index),
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
-            icon: AppIcons.test.svg(color: darkIcon),
+            icon: AppIcons.test.svg(color: context.color.white.withOpacity(.5)),
             activeIcon: AppIcons.test.svg(color: green),
             label: "Tests",
           ),
           BottomNavigationBarItem(
-            icon: AppIcons.profile.svg(color: darkIcon),
+            icon: AppIcons.profile
+                .svg(color: context.color.white.withOpacity(.5)),
             activeIcon: AppIcons.profile.svg(color: green),
             label: "Profile",
           ),

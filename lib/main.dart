@@ -33,5 +33,5 @@ void main() async {
     Bloc.observer = LogBlocObserver();
   }
 
-  runApp(MyApp(settingsController: settingsController));
+  runApp(const MyApp());
 }

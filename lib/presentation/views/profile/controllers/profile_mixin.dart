@@ -27,8 +27,9 @@ mixin ProfileMixin on State<ProfileView> {
           buildMode: MyIdBuildMode.DEBUG,
           entryType: MyIdEntryType.AUTH,
           externalId: myUuid,
+          withPhoto: true,
         ),
-        iosAppearance: const MyIdIOSAppearance(),
+        // iosAppearance: const MyIdIOSAppearance(),
       );
 
       error = null;

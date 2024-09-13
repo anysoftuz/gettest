@@ -98,7 +98,10 @@ class AuthDataSourcheImpl implements AuthDatasourche {
               'x-app-build': '1',
               'x-device-uid': "71C7B833-C6EA-4326-A8FF-CB8551867656",
               'x-app-lang': 'uz',
-              'x-app-organization': StorageRepository.getInt(StorageKeys.ORGID),
+              'x-app-organization': StorageRepository.getInt(
+                StorageKeys.ORGID,
+                defValue: 2,
+              ),
               'Accept': 'application/json',
               'Authorization':
                   'Bearer ${StorageRepository.getString(StorageKeys.TOKEN)}',
@@ -107,7 +110,7 @@ class AuthDataSourcheImpl implements AuthDatasourche {
           data: body.toJson(),
         );
       },
-      body: (response) => true,
+      body: (response) => response["success"],
     );
   }
 }
