@@ -23,6 +23,8 @@ Map<String, dynamic> _$StartTestsModelToJson(StartTestsModel instance) =>
     };
 
 Data _$DataFromJson(Map<String, dynamic> json) => Data(
+      testSessionId: (json['test_session_id'] as num?)?.toInt() ?? 0,
+      duration: (json['duration'] as num?)?.toInt() ?? 0,
       tests: (json['tests'] as List<dynamic>?)
               ?.map((e) => Test.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -30,6 +32,8 @@ Data _$DataFromJson(Map<String, dynamic> json) => Data(
     );
 
 Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
+      'test_session_id': instance.testSessionId,
+      'duration': instance.duration,
       'tests': instance.tests,
     };
 

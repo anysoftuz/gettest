@@ -15,7 +15,11 @@ class StartTestEvent extends TestEvent {
 }
 
 class FinishTestEvent extends TestEvent {
-  final int id;
+  final FinishModel model;
+  final VoidCallback onSucces;
 
-  FinishTestEvent({required this.id});
+  FinishTestEvent({
+    required this.model,
+    required this.onSucces,
+  });
 }

@@ -14,15 +14,27 @@ mixin StartTestMixin on State<StartTestView> {
 
   void onTapContinue() {
     if (indexQuset.value + 1 == widget.test.questionsCount) {
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => const TestResultsView(),
-      ));
-      list.map(
-        (e) {
-          Log.e(e.answeredAt);
-          Log.e(e.answerId);
-        },
-      );
+      context.read<TestBloc>().add(FinishTestEvent(
+            model: FinishModel(
+              id: widget.test.id,
+              sessionId: context
+                  .read<TestBloc>()
+                  .state
+                  .startTestsModel
+                  .data
+                  .testSessionId,
+              list: list,
+            ),
+            onSucces: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const TestResultsView(),
+              ));
+              list.map((e) {
+                Log.e(e.answeredAt);
+                Log.e(e.answerId);
+              });
+            },
+          ));
     } else {
       controller.animateToPage(
         controller.page!.toInt() + 1,

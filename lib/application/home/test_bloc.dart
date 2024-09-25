@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:gettest/data/models/home/finish_model.dart';
 import 'package:gettest/data/models/home/start_test_model.dart';
 import 'package:gettest/data/models/home/tests_model.dart';
 import 'package:gettest/infrastructure/repo/home_repo.dart';
@@ -41,12 +43,10 @@ class TestBloc extends Bloc<TestEvent, TestState> {
 
     on<FinishTestEvent>((event, emit) async {
       emit(state.copyWith(statusStart: FormzSubmissionStatus.inProgress));
-      final resault = await _repository.getTestStart(event.id);
+      final resault = await _repository.getTestFinish(event.model);
       if (resault.isRight) {
-        emit(state.copyWith(
-          statusStart: FormzSubmissionStatus.success,
-          startTestsModel: resault.right,
-        ));
+        emit(state.copyWith(statusStart: FormzSubmissionStatus.success));
+        event.onSucces();
       } else {
         emit(state.copyWith(statusStart: FormzSubmissionStatus.failure));
       }

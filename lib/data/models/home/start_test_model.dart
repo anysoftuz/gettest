@@ -36,10 +36,16 @@ class StartTestsModel {
 
 @JsonSerializable()
 class Data {
+  @JsonKey(name: "test_session_id")
+  final int testSessionId;
+  @JsonKey(name: "duration")
+  final int duration;
   @JsonKey(name: "tests")
   final List<Test> tests;
 
   const Data({
+    this.testSessionId = 0,
+    this.duration = 0,
     this.tests = const [],
   });
 

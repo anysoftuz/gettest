@@ -39,7 +39,20 @@ class HomeDatasourceImpl implements HomeDatasource {
   Future<bool> getTestFinish(FinishModel list) {
     return _handle.apiCantrol(
       request: () {
-        return dio.get('/v1/tests?page=1&per_page=100');
+        return dio.post(
+          '/v1/tests/${list.id}/finish',
+          data: {
+            "test_session_id": list.sessionId,
+            "questions": list.list
+                .map((e) => {
+                      "id": e.id,
+                      "answer_id": e.answerId,
+                      "answered_at": e.answeredAt,
+                      "started_at": e.startedAt
+                    })
+                .toList()
+          },
+        );
       },
       body: (response) => true,
     );

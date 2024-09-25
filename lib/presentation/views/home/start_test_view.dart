@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:formz/formz.dart';
 import 'package:gettest/application/home/test_bloc.dart';
+import 'package:gettest/data/models/home/finish_model.dart';
 import 'package:gettest/data/models/home/quiz_data.dart';
 import 'package:gettest/data/models/home/tests_model.dart';
 import 'package:gettest/presentation/views/home/test_results_view.dart';
