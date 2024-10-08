@@ -32,7 +32,7 @@ class HomeDatasourceImpl implements HomeDatasource {
         return dio.get('/v1/tests?page=1&per_page=100');
       },
       body: (response) => TestsModel.fromJson(response as Map<String, dynamic>),
-    );
+    ); 
   }
 
   @override
@@ -43,14 +43,7 @@ class HomeDatasourceImpl implements HomeDatasource {
           '/v1/tests/${list.id}/finish',
           data: {
             "test_session_id": list.sessionId,
-            "questions": list.list
-                .map((e) => {
-                      "id": e.id,
-                      "answer_id": e.answerId,
-                      "answered_at": e.answeredAt,
-                      "started_at": e.startedAt
-                    })
-                .toList()
+            "questions": list.list.map((e) => e.toJson()).toList()
           },
         );
       },
