@@ -96,7 +96,7 @@ class AuthDataSourcheImpl implements AuthDatasourche {
                   StorageRepository.getString(StorageKeys.deviceModel),
               'x-app-version': '0.0.1',
               'x-app-build': '1',
-              'x-device-uid': "71C7B833-C6EA-4326-A8FF-CB8551867656",
+              'x-device-uid': StorageRepository.getString(StorageKeys.deviceId),
               'x-app-lang': 'uz',
               'x-app-organization': StorageRepository.getInt(
                 StorageKeys.ORGID,

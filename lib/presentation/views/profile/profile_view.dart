@@ -34,7 +34,7 @@ class _ProfileViewState extends State<ProfileView> with ProfileMixin {
         actions: [
           IconButton(
             onPressed: () {
-              context.push(AppRouteName.notification);
+              Log.e(_result!.base64);
             },
             icon: AppIcons.notification.svg(color: context.color.white),
           ),
@@ -130,7 +130,8 @@ class _ProfileViewState extends State<ProfileView> with ProfileMixin {
                                       height: 48,
                                       width: 48,
                                       child: imageFromBase64String(
-                                          _result!.base64 ?? ""),
+                                        _result!.base64 ?? "",
+                                      ),
                                     ),
                                   )
                                 : null,
