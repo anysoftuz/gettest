@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:gettest/application/home/test_bloc.dart';
+import 'package:gettest/l10n/localizations.dart';
 import 'package:gettest/presentation/routes/route_name.dart';
 import 'package:gettest/presentation/views/home/test_info_view.dart';
 import 'package:gettest/src/assets/colors/colors.dart';
@@ -27,7 +28,7 @@ class _TestViewState extends State<TestView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Tests"),
+        title: Text(AppLocalizations.of(context)!.tests),
         actions: [
           IconButton(
             onPressed: () {

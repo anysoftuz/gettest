@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gettest/l10n/localizations.dart';
 import 'package:gettest/src/assets/colors/colors.dart';
 import 'package:gettest/src/assets/icons.dart';
 import 'package:gettest/src/assets/themes/context_extension.dart';
@@ -35,13 +36,13 @@ class _MainViewState extends State<MainView> {
           BottomNavigationBarItem(
             icon: AppIcons.test.svg(color: context.color.white.withOpacity(.5)),
             activeIcon: AppIcons.test.svg(color: green),
-            label: "Tests",
+            label: AppLocalizations.of(context)!.tests,
           ),
           BottomNavigationBarItem(
             icon: AppIcons.profile
                 .svg(color: context.color.white.withOpacity(.5)),
             activeIcon: AppIcons.profile.svg(color: green),
-            label: "Profile",
+            label: AppLocalizations.of(context)!.profile,
           ),
         ],
       ),

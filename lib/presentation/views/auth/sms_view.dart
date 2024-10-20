@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:gettest/application/auth/auth_bloc.dart';
 import 'package:gettest/data/models/auth/send_code_model.dart';
+import 'package:gettest/l10n/localizations.dart';
 import 'package:gettest/presentation/widgets/w_button.dart';
 import 'package:gettest/src/assets/colors/colors.dart';
 import 'package:gettest/utils/log_service.dart';
@@ -81,12 +82,12 @@ class _SmsViewState extends State<SmsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Tasdiqlash")),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.confirm)),
       bottomNavigationBar: SafeArea(
         child: BlocBuilder<AuthBloc, AuthState>(
           builder: (context, state) {
             return WButton(
-              margin: const EdgeInsets.symmetric(horizontal: 16),
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               onTap: () {
                 context.read<AuthBloc>().add(ExistEvent(
                       code: controller.text,
@@ -104,7 +105,7 @@ class _SmsViewState extends State<SmsView> {
                           ScaffoldMessenger.of(context)
                               .showSnackBar(const SnackBar(
                                   content: Text(
-                            "Kiritilgan kod hato",
+                            "Kiritilgan kod xato",
                           )));
                         }
                       },
@@ -112,7 +113,7 @@ class _SmsViewState extends State<SmsView> {
                       sessionId: widget.model.data.otp.sessionId,
                     ));
               },
-              text: "Davom etish",
+              text: AppLocalizations.of(context)!.confirm,
               isLoading: state.statusCode.isInProgress,
               isDisabled:
                   controller.text.length != widget.model.data.otp.codeLength,
@@ -180,7 +181,7 @@ class _SmsViewState extends State<SmsView> {
                   );
                 }
                 return Text(
-                  '${formatDuration(value)} seconds',
+                  '${formatDuration(value)} ${AppLocalizations.of(context)!.seconds}',
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,

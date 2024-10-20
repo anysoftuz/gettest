@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gettest/application/auth/auth_bloc.dart';
+import 'package:gettest/l10n/localizations.dart';
 import 'package:gettest/presentation/routes/route_name.dart';
 import 'package:gettest/presentation/widgets/w_button.dart';
 import 'package:gettest/src/assets/colors/colors.dart';
@@ -30,7 +31,7 @@ class _ProfileViewState extends State<ProfileView> with ProfileMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile"),
+        title: Text(AppLocalizations.of(context)!.profile),
         actions: [
           IconButton(
             onPressed: () {
@@ -50,8 +51,8 @@ class _ProfileViewState extends State<ProfileView> with ProfileMixin {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Text(
-                      "Rostanam chiqmoqchimisiz",
+                    Text(
+                      AppLocalizations.of(context)!.doYouWantToGoOut,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
@@ -66,7 +67,7 @@ class _ProfileViewState extends State<ProfileView> with ProfileMixin {
                             onTap: () {
                               context.read<AuthBloc>().add(LogOutEvent());
                             },
-                            text: "Ha",
+                            text: AppLocalizations.of(context)!.yes,
                             color: red,
                           ),
                         ),
@@ -76,7 +77,7 @@ class _ProfileViewState extends State<ProfileView> with ProfileMixin {
                             onTap: () {
                               Navigator.pop(context);
                             },
-                            text: "Yo'q",
+                            text: AppLocalizations.of(context)!.no,
                           ),
                         )
                       ],
@@ -92,9 +93,9 @@ class _ProfileViewState extends State<ProfileView> with ProfileMixin {
           children: [
             AppIcons.logout.svg(color: red),
             const SizedBox(width: 4),
-            const Text(
-              "Logout",
-              style: TextStyle(
+            Text(
+              AppLocalizations.of(context)!.logOut,
+              style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
                 color: red,
@@ -157,8 +158,10 @@ class _ProfileViewState extends State<ProfileView> with ProfileMixin {
                                 const SizedBox(width: 8),
                                 Text(
                                   state.userModel.data.user.isIdentified
-                                      ? "Identified user"
-                                      : "Not identified",
+                                      ? AppLocalizations.of(context)!
+                                          .identifiedUser
+                                      : AppLocalizations.of(context)!
+                                          .notIdentified,
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,
@@ -199,10 +202,10 @@ class _ProfileViewState extends State<ProfileView> with ProfileMixin {
                         children: [
                           AppIcons.save.svg(),
                           const SizedBox(width: 8),
-                          const Expanded(
+                          Expanded(
                             child: Text(
-                              "Go to identification",
-                              style: TextStyle(
+                              AppLocalizations.of(context)!.goToIdentification,
+                              style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -224,13 +227,22 @@ class _ProfileViewState extends State<ProfileView> with ProfileMixin {
               ),
               child: Column(
                 children: [
-                  ListTile(
-                    leading: AppIcons.edit.svg(color: context.color.white),
-                    trailing:
-                        AppIcons.arrowRight.svg(color: context.color.white),
-                    title: const Text("Edit profile"),
-                    onTap: () {
-                      context.push(AppRouteName.profileInfo);
+                  BlocBuilder<AuthBloc, AuthState>(
+                    builder: (context, state) {
+                      return ListTile(
+                        leading: AppIcons.edit.svg(
+                          color: context.color.white,
+                        ),
+                        trailing: AppIcons.arrowRight.svg(
+                          color: context.color.white,
+                        ),
+                        title: Text(AppLocalizations.of(context)!.editProfile),
+                        onTap: () {
+                          if (state.userModel.data.user.isIdentified) {
+                            context.push(AppRouteName.profileInfo);
+                          }
+                        },
+                      );
                     },
                   ),
                   const Divider(height: 1),
@@ -238,7 +250,7 @@ class _ProfileViewState extends State<ProfileView> with ProfileMixin {
                     leading: AppIcons.scan.svg(color: context.color.white),
                     trailing:
                         AppIcons.arrowRight.svg(color: context.color.white),
-                    title: const Text("Scan to login"),
+                    title: Text(AppLocalizations.of(context)!.scanToLogin),
                     onTap: () {
                       context.push(AppRouteName.scan);
                     },
@@ -248,7 +260,7 @@ class _ProfileViewState extends State<ProfileView> with ProfileMixin {
                     leading: AppIcons.lenguage.svg(color: context.color.white),
                     trailing:
                         AppIcons.arrowRight.svg(color: context.color.white),
-                    title: const Text("Language"),
+                    title: Text(AppLocalizations.of(context)!.lenguage),
                     onTap: () {
                       context.push(AppRouteName.lenguage);
                     },
@@ -258,7 +270,7 @@ class _ProfileViewState extends State<ProfileView> with ProfileMixin {
                     leading: AppIcons.theme.svg(color: context.color.white),
                     trailing:
                         AppIcons.arrowRight.svg(color: context.color.white),
-                    title: const Text("Theme"),
+                    title: Text(AppLocalizations.of(context)!.theme),
                     onTap: () {
                       context.push(AppRouteName.theme);
                     },

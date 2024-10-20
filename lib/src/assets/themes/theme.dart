@@ -40,6 +40,10 @@ abstract class AppTheme {
       );
 
   static ThemeData darkTheme() => ThemeData.dark().copyWith(
+        appBarTheme: const AppBarTheme(
+          centerTitle: true,
+          elevation: 1,
+        ),
         extensions: <ThemeExtension<AppThemeColor>>[AppThemeColor.dark],
       );
 

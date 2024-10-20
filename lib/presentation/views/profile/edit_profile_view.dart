@@ -2,7 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gettest/l10n/localizations.dart';
+import 'package:gettest/presentation/widgets/w_scale_animation.dart';
 import 'package:gettest/src/assets/colors/colors.dart';
+import 'package:gettest/src/assets/icons.dart';
 import 'package:gettest/src/assets/themes/context_extension.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -32,47 +35,48 @@ class _EditProfileViewState extends State<EditProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Edit Profile")),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.editProfile)),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            CircleAvatar(
-              radius: 56,
-              backgroundImage: images != null ? FileImage(images!) : null,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    imagesFile();
-                  },
-                  child: const Text(
-                    "Yuklash",
-                    style: TextStyle(color: blue),
+            SizedBox(
+              height: 114,
+              child: Stack(
+                children: [
+                  CircleAvatar(
+                    radius: 56,
+                    backgroundImage: images != null ? FileImage(images!) : null,
                   ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    images = null;
-                    setState(() {});
-                  },
-                  child: const Text(
-                    "O’chirish",
-                    style: TextStyle(color: red),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: WScaleAnimation(
+                      onTap: () {
+                        imagesFile();
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          color: context.color.black,
+                        ),
+                        child: AppIcons.edit.svg(color: context.color.white),
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
+            const SizedBox(height: 16),
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(color: context.color.borderColor),
               ),
-              child: const Column(
+              child: Column(
                 children: [
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(12),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -95,21 +99,21 @@ class _EditProfileViewState extends State<EditProfileView> {
                       ],
                     ),
                   ),
-                  Divider(height: 1),
+                  const Divider(height: 1),
                   Padding(
-                    padding: EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(12),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Birth date",
-                          style: TextStyle(
+                          AppLocalizations.of(context)!.birthDate,
+                          style: const TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
                             color: greyText,
                           ),
                         ),
-                        Text(
+                        const Text(
                           "18.07.1999",
                           style: TextStyle(
                             fontSize: 14,
@@ -119,8 +123,8 @@ class _EditProfileViewState extends State<EditProfileView> {
                       ],
                     ),
                   ),
-                  Divider(height: 1),
-                  Padding(
+                  const Divider(height: 1),
+                  const Padding(
                     padding: EdgeInsets.all(12),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -143,23 +147,23 @@ class _EditProfileViewState extends State<EditProfileView> {
                       ],
                     ),
                   ),
-                  Divider(height: 1),
+                  const Divider(height: 1),
                   Padding(
-                    padding: EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(12),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
                           child: Text(
-                            "Address",
-                            style: TextStyle(
+                            AppLocalizations.of(context)!.address,
+                            style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                               color: greyText,
                             ),
                           ),
                         ),
-                        Expanded(
+                        const Expanded(
                           child: Text(
                             "O’zbekiston Respublikasi, Andijon viloyati, Baliqchi tumani",
                             style: TextStyle(

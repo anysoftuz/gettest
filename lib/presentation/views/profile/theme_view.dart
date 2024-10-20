@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gettest/infrastructure/core/service_locator.dart';
+import 'package:gettest/l10n/localizations.dart';
 import 'package:gettest/presentation/widgets/w_scale_animation.dart';
 import 'package:gettest/src/assets/colors/colors.dart';
 import 'package:gettest/src/assets/icons.dart';
@@ -34,7 +35,7 @@ class _ThemeViewState extends State<ThemeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Mavzu")),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.theme)),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: ValueListenableBuilder(
@@ -49,7 +50,7 @@ class _ThemeViewState extends State<ThemeView> {
                   trailing: AppIcons.moon.svg(
                     color: value == 0 ? green : context.color.white,
                   ),
-                  title: 'Qorong’u',
+                  title: AppLocalizations.of(context)!.dark,
                   onTap: () {
                     serviceLocator<SettingsController>()
                         .updateThemeMode(ThemeMode.dark);
@@ -63,7 +64,7 @@ class _ThemeViewState extends State<ThemeView> {
                   trailing: AppIcons.sun.svg(
                     color: value == 1 ? green : context.color.white,
                   ),
-                  title: 'Yorug’',
+                  title: AppLocalizations.of(context)!.light,
                   onTap: () {
                     serviceLocator<SettingsController>()
                         .updateThemeMode(ThemeMode.light);
@@ -78,7 +79,7 @@ class _ThemeViewState extends State<ThemeView> {
                     Icons.phone_iphone,
                     color: value == 2 ? green : context.color.white,
                   ),
-                  title: 'Qurilma mavzusi',
+                  title: AppLocalizations.of(context)!.system,
                   onTap: () {
                     serviceLocator<SettingsController>()
                         .updateThemeMode(ThemeMode.system);

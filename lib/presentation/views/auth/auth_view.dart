@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:gettest/application/auth/auth_bloc.dart';
+import 'package:gettest/l10n/localizations.dart';
 import 'package:gettest/presentation/views/auth/sms_view.dart';
 import 'package:gettest/presentation/widgets/custom_text_field.dart';
 import 'package:gettest/presentation/widgets/w_button.dart';
@@ -21,9 +22,7 @@ class _AuthViewState extends State<AuthView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Auth"),
-      ),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.auth)),
       bottomNavigationBar: SafeArea(
         child: BlocBuilder<AuthBloc, AuthState>(
           builder: (context, state) {
@@ -53,7 +52,7 @@ class _AuthViewState extends State<AuthView> {
                       },
                     ));
               },
-              text: "Davom etish",
+              text: AppLocalizations.of(context)!.confirm,
             );
           },
         ),

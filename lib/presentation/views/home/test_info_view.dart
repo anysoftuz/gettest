@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gettest/application/home/test_bloc.dart';
 import 'package:gettest/data/models/home/tests_model.dart';
+import 'package:gettest/l10n/localizations.dart';
 import 'package:gettest/presentation/views/home/start_test_view.dart';
 import 'package:gettest/presentation/views/home/widgets/status_test_iteam.dart';
 import 'package:gettest/presentation/widgets/w_button.dart';
@@ -23,7 +24,7 @@ class _TestInfoViewState extends State<TestInfoView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Test")),
+      appBar: AppBar(title: Text(AppLocalizations.of(context)!.tests)),
       bottomNavigationBar: SafeArea(
         child: Container(
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
@@ -47,7 +48,7 @@ class _TestInfoViewState extends State<TestInfoView> {
                     date1: widget.test.startedAt,
                     date2: widget.test.finishedAt) !=
                 StatusTest.statr,
-            text: "Start test",
+            text: AppLocalizations.of(context)!.startTest,
           ),
         ),
       ),
@@ -67,9 +68,9 @@ class _TestInfoViewState extends State<TestInfoView> {
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     leading: AppIcons.question.svg(),
                     leadingToTitle: 8,
-                    title: const Text(
-                      "All questions",
-                      style: TextStyle(
+                    title: Text(
+                      AppLocalizations.of(context)!.allQuestions,
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
                         color: grey,
@@ -82,9 +83,9 @@ class _TestInfoViewState extends State<TestInfoView> {
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     leading: AppIcons.test.svg(),
                     leadingToTitle: 8,
-                    title: const Text(
-                      "All points",
-                      style: TextStyle(
+                    title: Text(
+                      AppLocalizations.of(context)!.allPoints,
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
                         color: grey,
@@ -97,9 +98,9 @@ class _TestInfoViewState extends State<TestInfoView> {
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     leading: AppIcons.passing.svg(),
                     leadingToTitle: 8,
-                    title: const Text(
-                      "Passing score",
-                      style: TextStyle(
+                    title: Text(
+                      AppLocalizations.of(context)!.passingScore,
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
                         color: grey,
