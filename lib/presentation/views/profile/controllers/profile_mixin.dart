@@ -24,7 +24,7 @@ mixin ProfileMixin on State<ProfileView> {
           clientId: clientId,
           clientHash: clientHash,
           clientHashId: clientHashId,
-          buildMode: MyIdBuildMode.DEBUG,
+          buildMode: MyIdBuildMode.PRODUCTION,
           entryType: MyIdEntryType.AUTH,
           externalId: myUuid,
           withPhoto: true,

@@ -53,7 +53,7 @@ class _ProfileViewState extends State<ProfileView> with ProfileMixin {
                   children: [
                     Text(
                       AppLocalizations.of(context)!.doYouWantToGoOut,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                       ),
