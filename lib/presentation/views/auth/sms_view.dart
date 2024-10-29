@@ -146,7 +146,7 @@ class _SmsViewState extends State<SmsView> {
                   color: const Color.fromRGBO(234, 239, 243, 1),
                 ),
               ),
-              errorText: "Kiritilgan kod hato",
+              errorText: "Kiritilgan kod xato",
               forceErrorState: error != 0,
               controller: controller,
               length: widget.model.data.otp.codeLength,

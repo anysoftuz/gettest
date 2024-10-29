@@ -166,5 +166,8 @@ class AppLocalizationsUz extends AppLocalizations {
   String get no => 'Yo\'q';
 
   @override
+  String get enter => 'Kirish';
+
+  @override
   String get seconds => 'soniya';
 }

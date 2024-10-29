@@ -166,5 +166,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get no => 'Нет';
 
   @override
+  String get enter => 'Входить';
+
+  @override
   String get seconds => 'секунды';
 }

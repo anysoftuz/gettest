@@ -41,9 +41,7 @@ class _ScanViewState extends State<ScanView> {
       appBar: AppBar(title: const Text("Scan to login")),
       // body: Stack(
       //   children: [
-      //     MobileScanner(
-      //       onDetect: _handleBarcode,
-      //     ),
+      //     MobileScanner(onDetect: _handleBarcode),
       //     Align(
       //       alignment: Alignment.bottomCenter,
       //       child: Container(

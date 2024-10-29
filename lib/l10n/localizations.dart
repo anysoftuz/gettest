@@ -415,6 +415,12 @@ abstract class AppLocalizations {
   /// **'No'**
   String get no;
 
+  /// No description provided for @enter.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter'**
+  String get enter;
+
   /// No description provided for @seconds.
   ///
   /// In en, this message translates to:

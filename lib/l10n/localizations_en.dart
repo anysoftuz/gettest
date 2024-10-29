@@ -166,5 +166,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get no => 'No';
 
   @override
+  String get enter => 'Enter';
+
+  @override
   String get seconds => 'seconds';
 }

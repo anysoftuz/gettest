@@ -29,7 +29,7 @@ mixin ProfileMixin on State<ProfileView> {
           externalId: myUuid,
           withPhoto: true,
         ),
-        // iosAppearance: const MyIdIOSAppearance(),
+        iosAppearance: const MyIdIOSAppearance(),
       );
 
       error = null;
